@@ -28,4 +28,31 @@ class ApiClient {
         requestBody: true, // Log the request body
         requestHeader: true, // Log the request headers
         responseHeader: true, // Log the response headers
+        responseBody: true, // Log the response body
+        error: true, // Log errors
+        logPrint: (obj) {
+          if (kDebugMode) print(obj); // Only print logs in debug mode
+        },
+      ),
+    );
+
+
+    final appDocsDir = await getApplicationDocumentsDirectory(); // Get the application documents directory
+    final cacheStore = HiveCacheStore(appDocsDir.path); // Create a new HiveCacheStore instance to store cached responses in the application documents directory
+
+
+    final cacheOptions = CacheOptions( 
+      store: cacheStore, // Set the cache store to the HiveCacheStore instance
+      policy: CachePolicy.request, // Set the cache policy to request, which means that the cache will be used only if the request fails
+      maxStale: const Duration(days: 7), // Set the maximum stale duration to 7 days, which means that cached responses older than 7 days will be considered stale and will not be used
+      );
+
+      dio.interceptors.add(DioCacheInterceptor(options: cacheOptions)); //" Add a DioCacheInterceptor to the Dio instance to cache responses based on the cache options
+       
+
   
+  }
+
+
+
+}

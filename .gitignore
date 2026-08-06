@@ -34,3 +34,7 @@ bin/
 # FVM
 .fvm/flutter_sdk
 .fvm/versions
+
+.dart_tool/
+.packages
+build/

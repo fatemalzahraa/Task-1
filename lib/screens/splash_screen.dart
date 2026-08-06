@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // إكمال التهيئة وتجاوز الشاشة الأولى/الـ Onboarding عند جاهزية التطبيق
     _initApp();
   }
 
@@ -52,8 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () {
-                    // إعلام الحالة بأن المستخدم أتم الإعداد وحان وقت الانتقال لتسجيل الدخول
-                    widget.authNotifier.onboarding();
+                    widget.authNotifier.login();
                   },
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),

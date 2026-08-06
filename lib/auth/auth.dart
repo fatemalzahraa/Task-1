@@ -19,6 +19,10 @@ class AuthNotifier extends ChangeNotifier {
     isInitialized = true;
     notifyListeners();
   }
+  void logout() {
+  isLoggedIn = false;
+  notifyListeners();
+}
 
 }
 

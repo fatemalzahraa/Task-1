@@ -22,19 +22,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _authNotifier = AuthNotifier();
-
-    // 2. تمرير _authNotifier إلى AppRouter لحل خطأ Positional Argument
     _appRouter = AppRouter(_authNotifier);
 
-    // 3. تشغيل دالة التهيئة المبدئية للتطبيق (Splash)
-    _initializeApp();
+  
   }
 
-  Future<void> _initializeApp() async {
-    // محاكاة تحميل البيانات قبل إخفاء Splash
-    await Future.delayed(const Duration(seconds: 2));
-    _authNotifier.initialize();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {

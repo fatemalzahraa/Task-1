@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final String? name;
+  final String name;
   const ProfileScreen({super.key, required this.name});
 
   @override

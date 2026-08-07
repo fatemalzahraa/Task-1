@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AuthNotifier extends ChangeNotifier {
   bool isInitialized = false;
-  bool isLoggedIn = false;
+  bool isLoggedIn = true;
   bool isFirstTime = true;
 
   void login() {

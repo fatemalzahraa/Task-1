@@ -1,22 +1,37 @@
-import 'package:json_annotation/json_annotation.dart';
+// To parse this JSON data, do
+//
+//     final todo = todoFromJson(jsonString);
 
-part 'todo_model.g.dart';
+import 'dart:convert';
 
-@JsonSerializable()
+Todo todoFromJson(String str) => Todo.fromJson(json.decode(str));
+
+String todoToJson(Todo data) => json.encode(data.toJson());
+
 class Todo {
-  final int id;
-  final int userId;
-  final String title;
-  final bool completed;
+    final int? userId;
+    final int? id;
+    final String? title;
+    final bool? completed;
 
-  Todo({
-    required this.id,
-    required this.userId,
-    required this.title,
-    required this.completed,
-  });
+    Todo({
+        this.userId,
+        this.id,
+        this.title,
+        this.completed,
+    });
 
-  factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
+    factory Todo.fromJson(Map<String, dynamic> json) => Todo(
+        userId: json["userId"],
+        id: json["id"],
+        title: json["title"],
+        completed: json["completed"],
+    );
 
-  Map<String, dynamic> toJson() => _$TodoToJson(this);
+    Map<String, dynamic> toJson() => {
+        "userId": userId,
+        "id": id,
+        "title": title,
+        "completed": completed,
+    };
 }

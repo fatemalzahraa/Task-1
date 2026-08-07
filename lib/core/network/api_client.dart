@@ -1,5 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,6 +17,8 @@ class ApiClient {
         baseUrl: 'https://jsonplaceholder.typicode.com', 
         connectTimeout: const Duration(seconds: 15),
         receiveTimeout: const Duration(seconds: 15),
+        
+        validateStatus: (status) => false, // Disable status code validation to handle errors manually
         headers: {
           'Content-Type': 'application/json',
 
@@ -47,7 +50,7 @@ class ApiClient {
       maxStale: const Duration(days: 7), // Set the maximum stale duration to 7 days, which means that cached responses older than 7 days will be considered stale and will not be used
       );
 
-      dio.interceptors.add(DioCacheInterceptor(options: cacheOptions)); //" Add a DioCacheInterceptor to the Dio instance to cache responses based on the cache options
+      // dio.interceptors.add(DioCacheInterceptor(options: cacheOptions)); //" Add a DioCacheInterceptor to the Dio instance to cache responses based on the cache options
        
 
   
